@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Timeline</title>
+    
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Interactive Timeline</h1>
+
+    <!-- Timeline Container -->
+    <div class="timeline">
+        <div class="event" data-year="2020">
+            <h3>Event 1</h3>
+            <p>Date: January 1, 2020</p>
+            <p>This is the first event.</p>
+            <button class="navigate-button" data-url="p1.html">View Details</button>
+        </div>
+        <div class="event" data-year="2021">
+            <h3>Event 2</h3>
+            <p>Date: March 15, 2021</p>
+            <p>This is the second event.</p>
+            <button class="navigate-button" data-url="p2.html">View Details</button>
+        </div>
+        <div class="event" data-year="2022">
+            <h3>Event 3</h3>
+            <p>Date: June 30, 2022</p>
+            <p>This is the third event.</p>
+            <button class="navigate-button" data-url="p3.html">View Details</button>
+        </div>
+    </div>
+    <input type="range" id="year-slider" min="2020" max="2022" value="2020" />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('year-slider');
+            const events = document.querySelectorAll('.event');
+
+            function updateTimeline(year) {
+                events.forEach(event => {
+                    const eventYear = event.getAttribute('data-year');
+                    if (eventYear === year.toString()) {
+                        event.style.display = 'block'; // Show the event
+                    } else {
+                        event.style.display = 'none'; // Hide the event
+                    }
+                });
+            }
+
+            // Initial update
+            updateTimeline(slider.value);
+
+            // Update on slider change
+            slider.addEventListener('input', function() {
+                updateTimeline(slider.value);
+            });
+
+            // Event button click to navigate to new page
+            const buttons = document.querySelectorAll('.navigate-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const url = button.getAttribute('data-url');
+                    window.location.href = url; // Navigate to the specified URL
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
