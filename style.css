@@ -7,7 +7,7 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    background-color: #a0b2ec; /* Light background for contrast */
+    background-color: #8ca4f1; 
 }
 
 h1 {
@@ -16,9 +16,9 @@ h1 {
 }
 
 .timeline {
-    width: 80%; /* Adjust width as needed */
-    max-width: 800px; /* Maximum width */
-    background: white;
+    width: 50%; 
+    max-width: 600px; 
+    background: rgb(190, 199, 243);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -34,8 +34,8 @@ h1 {
 }
 
 .event:hover {
-    transform: scale(1.02); /* Slight zoom effect on hover */
-}
+    transform: scale(1.02); 
+} 
 
 .navigate-button {
     padding: 10px 15px;
@@ -47,10 +47,10 @@ h1 {
 }
 
 .navigate-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
 }
 
 input[type="range"] {
     margin-top: 20px;
-    width: 100%;
+    width: 70%;
 }
