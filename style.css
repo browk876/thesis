@@ -1,48 +1,56 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #a0b2ec; /* Light background for contrast */
 }
 
 h1 {
     text-align: center;
-}
-
-.timeline {
-    max-width: 600px;
-    margin: auto;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: white;
     margin-bottom: 20px;
 }
 
+.timeline {
+    width: 80%; /* Adjust width as needed */
+    max-width: 800px; /* Maximum width */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+}
+
 .event {
-    display: none; /* Hidden by default */
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #007BFF;
+    padding: 15px;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    background: #e7f3ff;
+    margin-bottom: 15px;
+    transition: transform 0.2s;
+}
+
+.event:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
 }
 
 .navigate-button {
-    margin-top: 10px;
-    padding: 8px 12px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 .navigate-button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
-#year-slider {
+input[type="range"] {
+    margin-top: 20px;
     width: 100%;
-    margin: 20px 0;
 }
