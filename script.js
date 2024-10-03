@@ -12,23 +12,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 event.style.display = 'none'; // Hide the event
             }
         });
-        selectedYearDisplay.textContent = year; // Update displayed year
+        selectedYearDisplay.textContent = year; 
     }
 
-    // Initial update
     updateTimeline(slider.value);
 
-    // Update on slider change
+  
     slider.addEventListener('input', function() {
         updateTimeline(slider.value);
     });
 
-    // Event button click to navigate to new page
+   
     const buttons = document.querySelectorAll('.navigate-button');
     buttons.forEach(button => {
         button.addEventListener('click', function() {
             const url = button.getAttribute('data-url');
-            window.location.href = url; // Navigate to the specified URL
+            window.location.href = url; 
         });
     });
 });

@@ -3,11 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event 3 Details</title>
+    <title>p3</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8ca4f1;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #map3 {
+            height: 500px;
+            width: 100%; 
+            max-width: 800px; 
+            margin: auto; 
+            margin-bottom: 20px;
+        }
+
+        .event-details {
+            max-width: 600px;
+            margin: auto;
+            padding: 10px;
+            border: 1px solid #5f80ed;
+            border-radius: 5px;
+            background: white;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #090909;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>Event 3</h1>
-    <p>Details about Event 3.</p>
-    <a href="index.html">Back to Timeline</a>
+    <div class="event-details">
+        <p>Date: </p>
+        <p>.....</p>
+    </div>
+
+    <div id="map3"></div>
+
+   
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+     
+        var map3 = L.map('map3').setView([40.7128, -74.0060], 13); 
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map3);
+
+        
+        var marker3 = L.marker([40.7128, -74.0060]).addTo(map3); 
+        marker3.bindPopup('<b>Event 3 Location!</b><br>This is where Event 3 took place.').openPopup();
+    </script>
+
+    <a class="back-link" href="index.html">Back to Timeline</a>
 </body>
 </html>

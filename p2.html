@@ -3,12 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event 2 Details</title>
+    <title>p2</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8ca4f1;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #map2 {
+            height: 500px;
+            width: 100%; 
+            max-width: 800px; 
+            margin: auto; 
+            margin-bottom: 20px;
+        }
+
+        .event-details {
+            max-width: 600px;
+            margin: auto;
+            padding: 10px;
+            border: 1px solid #5f80ed;
+            border-radius: 5px;
+            background: white;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #090909;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>Event 2</h1>
-    <p>Details about Event 2.</p>
-    <a href="index.html">Back to Timeline</a>
+    <div class="event-details">
+        <p>Date: </p>
+        <p>.....</p>
+    </div>
+
+    <div id="map2"></div>
+
+   
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        
+        var map2 = L.map('map2').setView([48.8566, 2.3522], 13); 
+
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map2);
+
+        
+        var marker2 = L.marker([48.8566, 2.3522]).addTo(map2); 
+        marker2.bindPopup('<b>Event 2 Location!</b><br>This is where Event 2 took place.').openPopup();
+    </script>
+
+    <a class="back-link" href="index.html">Back to Timeline</a>
 </body>
 </html>
+
 
