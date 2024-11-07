@@ -3,76 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p3</title>
+    <title>Economic Distress and Labour Markets Data: Poor Law Statistics</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     
     <style>
+        /* General body styling */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #8ca4f1;
+            font-family: 'Georgia', serif;
+            background-color: #5f9de9; /* Soft, cool, light blue */
             margin: 0;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Subtle wood texture */
+            background-size: 50px 50px;
         }
 
         h1 {
             text-align: center;
+            margin-top: 20;
+            margin-bottom: 20px;
+            font-size: 45px;
+            color: #1d2d50; /* Deep midnight blue */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
         }
 
+         /* Event details box styling */
+      .event-details {
+            background: #cbe0f1; /* Soft icy blue background */
+            border: 2px solid #a1c6e0; /* Soft blue border */
+            border-radius: 10px;
+            padding: 25px;
+            width: 860%;
+            max-width: 800px;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            font-family: 'Georgia', serif;
+            background-image: url('https://www.transparenttextures.com/patterns/victorian.png'); /* Victorian Damask pattern */
+            background-size: 150px 150px;
+      }
+
+
+        .event-details p {
+            font-size: 18px;
+            color: #4e6571; /* Cool grayish-blue for readability */
+        }
+
+        /* Map styling */
         #map3 {
             height: 500px;
             width: 100%; 
             max-width: 800px; 
-            margin: auto; 
-            margin-bottom: 20px;
+            margin: 0 auto 20px auto; 
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .event-details {
-            max-width: 600px;
-            margin: auto;
-            padding: 10px;
-            border: 1px solid #5f80ed;
-            border-radius: 5px;
-            background: white;
-        }
-
+        /* Back link button styling */
         .back-link {
             display: block;
             margin-top: 20px;
             text-align: center;
             text-decoration: none;
-            color: #090909;
+            color: #f4f5fa;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 15px;
+            background-color: #2a4f6b; /* Soft navy background */
+            border-radius: 8px;
+            border: 2px solid #4b7ca1;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .back-link:hover {
-            text-decoration: underline;
+            background-color: #2a4f6b; /* Darker blue on hover */
+            border-color: #3e6c8e;
+            text-decoration: none;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Event 3</h1>
+
+    <h1>Economic Distress and Labour Markets Data</h1>
+    
     <div class="event-details">
-        <p>Date: </p>
-        <p>.....</p>
+        <p><strong>Date:</strong> 1859 - 1939</p>
+        <p>............</p>
     </div>
 
     <div id="map3"></div>
 
-   
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-     
-        var map3 = L.map('map3').setView([40.7128, -74.0060], 13); 
+        // Initialize the map with London coordinates
+        var map3 = L.map('map3').setView([51.5074, -0.1278], 6);  // London Coordinates
 
+        // Add OpenStreetMap tile layer to the map
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map3);
 
-        
-        var marker3 = L.marker([40.7128, -74.0060]).addTo(map3); 
+        // Add a marker at London with a popup
+        var marker3 = L.marker([51.5074, -0.1278]).addTo(map3);  // Marker at London
         marker3.bindPopup('<b>Event 3 Location!</b><br>This is where Event 3 took place.').openPopup();
     </script>
 
+    <!-- Back to Timeline link -->
     <a class="back-link" href="index.html">Back to Timeline</a>
+
 </body>
 </html>

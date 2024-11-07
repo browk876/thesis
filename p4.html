@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pre Amendment English Poor Law Cases</title>
+    <title>Census and Poor Law Union Data</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
     <style>
         /* General body styling */
         body {
@@ -28,8 +29,8 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
         }
 
-        /* Event details box styling */
-        .event-details {
+          /* Event details box styling */
+      .event-details {
             background: #cbe0f1; /* Soft icy blue background */
             border: 2px solid #a1c6e0; /* Soft blue border */
             border-radius: 10px;
@@ -42,7 +43,8 @@
             font-family: 'Georgia', serif;
             background-image: url('https://www.transparenttextures.com/patterns/victorian.png'); /* Victorian Damask pattern */
             background-size: 150px 150px;
-        }
+      }
+
 
         .event-details p {
             font-size: 18px;
@@ -50,7 +52,7 @@
         }
 
         /* Map styling */
-        #map {
+        #map4 {
             height: 500px;
             width: 100%; 
             max-width: 800px; 
@@ -59,8 +61,8 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        /* Back link button styling */
-        .back-link {
+         /* Back link button styling */
+         .back-link {
             display: block;
             margin-top: 20px;
             text-align: center;
@@ -85,30 +87,29 @@
 </head>
 <body>
 
-    <h1>Pre Amendment English Poor Law Cases</h1>
-
+    <h1>Census and Poor Law Union Data</h1>
+    
     <div class="event-details">
-        <p><strong>Date:</strong> 1690 - 1815</p>
+        <p><strong>Date:</strong> 1871 - 1891</p>
         <p>........</p>
-        <p>......</p>
     </div>
 
-    <div id="map"></div>
+    <div id="map4"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Initialize the map with London coordinates
-        var map = L.map('map').setView([51.5074, -0.1278], 6);  // London Coordinates 
+        var map4 = L.map('map4').setView([51.5074, -0.1278], 6);  // London Coordinates
 
         // Add OpenStreetMap tile layer to the map
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
-        }).addTo(map);
+        }).addTo(map4);
 
         // Add a marker at London with a popup
-        var marker = L.marker([51.5074, -0.1278]).addTo(map);
-        marker.bindPopup('<b>London</b><br>Important center during the Poor Laws era.').openPopup();
+        var marker4 = L.marker([51.5074, -0.1278]).addTo(map4);  // Marker at London
+        marker4.bindPopup('<b>Event 4 Location!</b><br>This is where Event 4 took place.').openPopup();
     </script>
 
     <!-- Back to Timeline link -->
