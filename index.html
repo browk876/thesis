@@ -15,267 +15,166 @@
             align-items: center;
             flex-direction: column;
             height: 100vh;
-            background-color: #5f9de9; /* Soft, cool, light blue */
+            background-color: #5f9de9;
             font-family: "Smythe", serif;
-            color: #5f5a5a; /* Muted text color to balance the blue */
-            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Subtle wood texture pattern */
-            background-size: 50px 50px; /* Adjust pattern size for subtle effect */
+            color: #5f5a5a;
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+            background-size: 50px 50px;
         }
 
-        /* Header styling */
-        h1 {
+        h1, h2 {
             text-align: center;
-            margin-top: 0px;
-            margin-bottom: 0px;
+            margin: 0;
+        }
+
+        h1 {
             font-size: 55px;
-            font-family: 'Georgia', serif; /* Victorian-style font */
-            color: #1d2d50; /* Deep midnight blue for a regal touch */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+            font-family: 'Georgia', serif;
+            color: #1d2d50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         h2 {
-            text-align: center;
             margin-bottom: 30px;
             font-size: 35px;
             font-family: 'Georgia', serif;
-            color: #2a4c6b; /* Faded blue for softer tone */
+            color: #2a4c6b;
         }
 
-        .container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 1200px; /* Ensures containers don't stretch too wide */
-            margin-top: 30px;
-        }
-
-        /* Info box styling (left) */
-        .info-box {
-            background: #cbe0f1; /* Soft icy blue background */
-            border: 2px solid #a1c6e0; /* Soft blue border */
-            border-radius: 10px;
-            padding: 25px;
-            width: 39%; /* Adjust width to leave space for timeline */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            font-family: 'Georgia', serif;
-            background-image: url('https://www.transparenttextures.com/patterns/victorian.png'); /* Victorian Damask pattern */
-            background-size: 150px 150px;
-        }
-
-        .info-box h2 {
-            margin-top: 0;
-            font-size: 30px;
-            color: #1e3a5f; /* Dark, royal blue for title */
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .info-box p {
-            font-size: 18px;
-            color: #4e6571; /* Cool grayish-blue for readability */
-        }
-
-        /* Timeline container styling (right) */
         .timeline {
-            width: 35%; /* Adjust width to fit alongside info box */
-            height: 20%;
-            background: #acd4fb; /* Very light blue-gray */
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            background-image: url('https://www.transparenttextures.com/patterns/victorian.png'); /* Victorian Damask pattern */
-            background-size: 150px 150px; /* Adjust size for subtlety */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Event styling */
         .event {
+            display: none;
+            margin: 20px;
             padding: 20px;
-            height: 75%;
-            background: #c5e2ff;  /* White with slight blue tint */
-            border: none;
+            background: #c5e2ff;
             border-radius: 10px;
-            margin-bottom: 20px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
             font-family: 'Georgia', serif;
-            color: #1d2d50; /* Midnight blue text for Victorian elegance */
+            color: #1d2d50;
         }
 
-        /* Event hover effect */
-        .event:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        .event.active {
+            display: block;
         }
 
-        /* Button styling */
-.navigate-button {
-    padding: 5px 10px;
-    border: 2px solid #4b7ca1; /* Soft navy border */
-    background-color: #4b7ca1; /* Muted royal blue background */
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Georgia', serif;
-    font-size: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    text-decoration: none; /* Removes the underline */
-    margin-top: 40px;
-}
-
-        .navigate-button:hover {
-            background-color: #2a4f6b; /* Darker shade of blue for hover */
-            border-color: #3e6c8e;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Slider styling */
         input[type="range"] {
-            margin-top: 20px;
             width: 70%;
             max-width: 800px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            background: #0a3c6e; /* Navy blue background for track */
+            margin: 20px 0;
+            height: 8px;
+            background: #0a3c6e;
             border-radius: 8px;
-            height: 8px; /* Thicker track */
-        }
-
-        input[type="range"]::-webkit-slider-runnable-track {
-            background: #0a3c6e; /* Navy track color */
-            height: 8px; /* Thicker track */
+            outline: none;
+            appearance: none;
+            cursor: pointer;
         }
 
         input[type="range"]::-webkit-slider-thumb {
-            background: #1d2d50;  /* Dark royal blue for thumb */
-            border: 2px solid #a1c0d1;
-            height: 30px; /* Increased size */
-            width: 30px;  /* Increased size */
-            border-radius: 50%;  /* Make it a perfect circle */
-            box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
-
-        input[type="range"]:focus {
-            outline: none;
-        }
-
-        input[type="range"]:hover::-webkit-slider-thumb {
-            background: #2a4f6b;  /* Darker thumb on hover */
-        }
-
-        /* Firefox */
-        input[type="range"]::-moz-range-track {
-            background: #0a3c6e;
-            height: 8px;
-        }
-
-        input[type="range"]::-moz-range-thumb {
+            appearance: none;
+            width: 30px;
+            height: 30px;
             background: #1d2d50;
             border: 2px solid #a1c0d1;
-            height: 30px; /* Increased size */
-            width: 30px;  /* Increased size */
-            border-radius: 50%;  /* Make it a perfect circle */
+            border-radius: 50%;
             cursor: pointer;
         }
-
     </style>
 </head>
 <body>
-
     <h1>Poor Laws</h1>
     <h2>Welfare in 19th Century Britain</h2>
 
-    <!-- Info Box above Timeline -->
-    <div class="info-box">
-        <h2>Timeline Overview</h2>
-        <p>This timeline represents data related to the British Poor Law welfare system. Use the slider or arrow keys to navigate through the years and view event details.</p>
-    </div>
-
-    <!-- Timeline and Events -->
     <div class="timeline">
         <div class="event" data-year="2020">
             <h3>Pre Amendment English Poor Law Cases</h3>
             <p>Date: 1690 - 1815</p>
-            <p>   </p>
-            <!-- Updated View Details Button as Link -->
             <a href="p1.html" class="navigate-button">View Details</a>
         </div>
         <div class="event" data-year="2021">
             <h3>Elderly Poor in Late-Victorian England</h3>
             <p>Date: 1851 - 1891</p>
-        
-            <!-- Updated View Details Button as Link -->
             <a href="p2.html" class="navigate-button">View Details</a>
         </div>
         <div class="event" data-year="2022">
             <h3>Economic Distress and Labour Markets Data</h3>
             <p>Date: 1859 - 1939</p>
-
-            <!-- Updated View Details Button as Link -->
             <a href="p3.html" class="navigate-button">View Details</a>
         </div>
         <div class="event" data-year="2023">
             <h3>Census and Poor Law Union Data</h3>
             <p>Date: 1871 - 1891</p>
-
-            <!-- Updated View Details Button as Link -->
             <a href="p4.html" class="navigate-button">View Details</a>
         </div>
     </div>
-    
-    <!-- Year Slider -->
-    <input type="range" id="year-slider" min="2020" max="2023" value="2020" />
+
+    <input type="range" id="year-slider" min="2020" max="2023" value="2020" step="1" />
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             const slider = document.getElementById('year-slider');
             const events = document.querySelectorAll('.event');
+            let isDragging = false;
+            let startX = 0;
+            let startValue = 0;
 
-            // Function to update the timeline based on the selected year
-            function updateTimeline(year) {
+            const updateTimeline = (year) => {
                 events.forEach(event => {
-                    const eventYear = event.getAttribute('data-year');
-                    if (eventYear === year.toString()) {
-                        event.style.display = 'block'; // Show the event
-                    } else {
-                        event.style.display = 'none'; // Hide the event
-                    }
+                    event.classList.toggle('active', event.dataset.year === year.toString());
                 });
-            }
+            };
 
-            // Initialize the timeline with the default slider value
-            updateTimeline(slider.value);
+            // Update timeline based on slider value
+            slider.addEventListener('input', () => updateTimeline(slider.value));
 
-            // Update timeline when slider input changes
-            slider.addEventListener('input', function() {
-                updateTimeline(slider.value);
+            // Enable dragging functionality
+            slider.addEventListener('mousedown', (event) => {
+                isDragging = true;
+                startX = event.clientX;
+                startValue = parseInt(slider.value, 10);
+                event.preventDefault();
             });
 
-            // Keyboard navigation (arrow keys)
-            document.addEventListener('keydown', function(event) {
+            document.addEventListener('mousemove', (event) => {
+                if (isDragging) {
+                    const delta = Math.round((event.clientX - startX) / 105); // Adjust sensitivity for even slower movement
+                    let newValue = startValue + delta;
+
+                    newValue = Math.max(parseInt(slider.min), Math.min(newValue, parseInt(slider.max))); // Clamp value
+                    slider.value = newValue;
+                    updateTimeline(slider.value);
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Enable arrow key navigation
+            document.addEventListener('keydown', (event) => {
                 let currentYear = parseInt(slider.value);
 
-                // Arrow Left (decrease year)
                 if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
                     if (currentYear > parseInt(slider.min)) {
-                        slider.value = currentYear - 1;  // Decrease the year
-                        updateTimeline(slider.value);   // Update the events
+                        slider.value = currentYear - 1;
+                        updateTimeline(slider.value);
                     }
-                }
-
-                // Arrow Right (increase year)
-                if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+                } else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
                     if (currentYear < parseInt(slider.max)) {
-                        slider.value = currentYear + 1;  // Increase the year
-                        updateTimeline(slider.value);   // Update the events
+                        slider.value = currentYear + 1;
+                        updateTimeline(slider.value);
                     }
                 }
             });
+
+            // Initialize timeline
+            updateTimeline(slider.value);
         });
     </script>
-
 </body>
 </html>
