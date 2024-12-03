@@ -22,15 +22,15 @@
 
         h1 {
             text-align: center;
-            margin-top: 20;
+            margin-top: 20px;
             margin-bottom: 20px;
             font-size: 45px;
             color: #1d2d50; /* Deep midnight blue */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
         }
 
-          /* Event details box styling */
-      .event-details {
+        /* Event details box styling */
+        .event-details {
             background: #cbe0f1; /* Soft icy blue background */
             border: 2px solid #a1c6e0; /* Soft blue border */
             border-radius: 10px;
@@ -43,8 +43,7 @@
             font-family: 'Georgia', serif;
             background-image: url('https://www.transparenttextures.com/patterns/victorian.png'); /* Victorian Damask pattern */
             background-size: 150px 150px;
-      }
-
+        }
 
         .event-details p {
             font-size: 18px;
@@ -61,8 +60,8 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-         /* Back link button styling */
-         .back-link {
+        /* Back link button styling */
+        .back-link {
             display: block;
             margin-top: 20px;
             text-align: center;
@@ -91,7 +90,8 @@
     
     <div class="event-details">
         <p><strong>Date:</strong> 1871 - 1891</p>
-        <p>........</p>
+        <p>
+            Data on poverty relief in 19th-century England analyzed in 1899 by Udny Yule using advanced statistical methods to study social policies. This research focused on Poor Law Unions (PLUs) from the years 1871, 1881, and 1891. Yules’ sources included government reports, census data, and a 1894 study on population density. This research aiming to examine poverty rates, indoor and outdoor relief, population density, and age distribution. This data depicts the state of poverty relief within PLUs several decades following the 1834 Poor Law Amendment Act.</p>
     </div>
 
     <div id="map4"></div>
@@ -99,7 +99,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Initialize the map with London coordinates
-        var map4 = L.map('map4').setView([51.5074, -0.1278], 6);  // London Coordinates
+        var map4 = L.map('map4').setView([51.5074, -0.1278], 11);  // Centered in London
 
         // Add OpenStreetMap tile layer to the map
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -107,9 +107,49 @@
             attribution: '© OpenStreetMap'
         }).addTo(map4);
 
-        // Add a marker at London with a popup
-        var marker4 = L.marker([51.5074, -0.1278]).addTo(map4);  // Marker at London
-        marker4.bindPopup('<b>Event 4 Location!</b><br>This is where Event 4 took place.').openPopup();
+        // Add markers for each location with info for West Ham only
+        var locations = [
+            { name: "Chelsea", coords: [51.4875, -0.1687], info: "Pauperism: 64<br>Out-relief Ratio: 21<br>Proportion of Old: 81<br>Population: 124" },
+            { name: "St George's", coords: [51.4964, -0.1372], info: "Pauperism: 46<br>Out-relief Ratio: 18/19<br>Proportion of Old: 113<br>Population: 96" },
+            { name: "Westminster", coords: [51.4995, -0.1248], info: "Pauperism: 52<br>Out-relief Ratio: 27/26<br>Proportion of Old: 105<br>Population: 91" },
+            { name: "Holborn", coords: [51.5171, -0.1185], info: "Pauperism: 79<br>Out-relief Ratio: 33/34<br>Proportion of Old: 95<br>Population: 93" },
+            { name: "Shoreditch", coords: [51.5273, -0.0782], info: "Pauperism: 52<br>Out-relief Ratio: 21<br>Proportion of Old: 108<br>Population: 100" },
+            { name: "Kensington", coords: [51.4999, -0.1976], info: "Pauperism: 27<br>Out-relief Ratio: 5<br>Proportion of Old: 104<br>Population: 136" },
+            { name: "Paddington", coords: [51.5150, -0.1758], info: "Pauperism: 47<br>Out-relief Ratio: 12/13<br>Proportion of Old: 115<br>Population: 111" },
+            { name: "Fulham", coords: [51.4805, -0.1954], info: "Pauperism: 31<br>Out-relief Ratio: 21<br>Proportion of Old: 85<br>Population: 174" },
+            { name: "Marylebone", coords: [51.5225, -0.1634], info: "Pauperism: 81<br>Out-relief Ratio: 36<br>Proportion of Old: 100<br>Population: 97" },
+            { name: "St Pancras", coords: [51.5308, -0.1254], info: "Pauperism: 61<br>Out-relief Ratio: 35<br>Proportion of Old: 101<br>Population: 107" },
+            { name: "Islington", coords: [51.5362, -0.1030], info: "Pauperism: 59<br>Out-relief Ratio: 35<br>Proportion of Old: 101<br>Population: 132" },
+            { name: "Hackney", coords: [51.5450, -0.0553], info: "Pauperism: 33<br>Out-relief Ratio: 22<br>Proportion of Old: 91<br>Population: 150/149" },
+            { name: "St Giles", coords: [51.5172, -0.1251], info: "Pauperism: 76<br>Out-relief Ratio: 30/29<br>Proportion of Old: 103<br>Population: 85" },
+            { name: "Strand", coords: [51.5101, -0.1200], info: "Pauperism: 64<br>Out-relief Ratio: 27<br>Proportion of Old: 97<br>Population: 91" },
+            { name: "Bethnal Green", coords: [51.5272, -0.0628], info: "Pauperism: 46<br>Out-relief Ratio: 19<br>Proportion of Old: 102<br>Population: 106" },
+            { name: "Whitechapel", coords: [51.5194, -0.0594], info: "Pauperism: 3<br>Out-relief Ratio: 6<br>Proportion of Old: 93<br>Population: 93/94" },
+            { name: "St George's East", coords: [51.5120, -0.0582], info: "Pauperism: 37<br>Out-relief Ratio: 6<br>Proportion of Old: 98/99<br>Population: 98" },
+            { name: "Stepney", coords: [51.5163, -0.0468], info: "Pauperism: 34<br>Out-relief Ratio: 10<br>Proportion of Old: 87<br>Population: 101" },
+            { name: "Mile End", coords: [51.5256, -0.0330], info: "Pauperism: 43<br>Out-relief Ratio: 15/13<br>Proportion of Old: 1026<br>Population: 113" },
+            { name: "Poplar", coords: [51.5099, -0.0195], info: "Pauperism: 37/39<br>Out-relief Ratio: 20<br>Proportion of Old: 102/103<br>Population: 135/134" },
+            { name: "St Saviour's", coords: [51.5040, -0.0901], info: "Pauperism: 52<br>Out-relief Ratio: 22<br>Proportion of Old: 100<br>Population: 111" },
+            { name: "St Olave's", coords: [51.5008, -0.0812], info: "Pauperism: 57<br>Out-relief Ratio: 32<br>Proportion of Old: 102<br>Population: 110" },
+            { name: "Lambeth", coords: [51.4983, -0.1110], info: "Pauperism: 57/56<br>Out-relief Ratio: 38<br>Proportion of Old: 99/98<br>Population: 122" },
+            { name: "Wandsworth", coords: [51.4577, -0.1920], info: "Pauperism: 23<br>Out-relief Ratio: 18<br>Proportion of Old: 91<br>Population: 168" },
+            { name: "Camberwell", coords: [51.4750, -0.0923], info: "Pauperism: 30<br>Out-relief Ratio: 14<br>Proportion of Old: 83<br>Population: 168" },
+            { name: "Greenwich", coords: [51.4821, -0.0098], info: "Pauperism: 55<br>Out-relief Ratio: 37/38<br>Proportion of Old: 94<br>Population: 131/130" },
+            { name: "Lewisham", coords: [51.4613, -0.0100], info: "Pauperism: 41/40<br>Out-relief Ratio: 24/27<br>Proportion of Old: 100<br>Population: 142/141" },
+            { name: "Woolwich", coords: [51.4890, 0.0637], info: "Pauperism: 76/77<br>Out-relief Ratio: 20/15<br>Proportion of Old: 119<br>Population: 110" },
+            { name: "Croydon", coords: [51.3721, -0.0982], info: "Pauperism: 38/48<br>Out-relief Ratio: 29<br>Proportion of Old: 101<br>Population: 142" },
+            { name: "West Ham", coords: [51.5282, 0.0056], info: "Pauperism: 38<br>Out-relief Ratio: 49<br>Proportion of Old: 86<br>Population: 203" }
+        ];
+
+        // Add markers with popups for each location
+        locations.forEach(function(location) {
+            var marker = L.marker(location.coords).addTo(map4);
+            if (location.info) {
+                marker.bindPopup(`<b>${location.name}</b><br>${location.info}`);
+            } else {
+                marker.bindPopup(`<b>${location.name}</b>`);
+            }
+        });
     </script>
 
     <!-- Back to Timeline link -->
