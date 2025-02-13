@@ -22,13 +22,14 @@
             background-size: 50px 50px;
         }
 
-        h1, h2 {
+        h1, h2, p {
             text-align: center;
             margin: 0;
+            font-weight: bold;
         }
 
         h1 {
-            font-size: 55px;
+            font-size: 70px;
             font-family: 'Georgia', serif;
             color: #1d2d50;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -39,6 +40,14 @@
             font-size: 35px;
             font-family: 'Georgia', serif;
             color: #2a4c6b;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            font-family: 'Georgia', serif;
+            color: #1d2d50;
+            margin-bottom: 25px;
+            margin-top: 25px;
         }
 
         .timeline {
@@ -57,6 +66,8 @@
             text-align: center;
             font-family: 'Georgia', serif;
             color: #1d2d50;
+            font-weight: bold;
+            font-size: 16px;
         }
 
         .event.active {
@@ -89,6 +100,7 @@
 <body>
     <h1>Poor Laws</h1>
     <h2>Welfare in 19th Century Britain</h2>
+    <p class="subtitle">Pick a point on the timeline to view poor law data from different years</p>
 
     <div class="timeline">
         <div class="event" data-year="2020">
@@ -119,9 +131,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             const slider = document.getElementById('year-slider');
             const events = document.querySelectorAll('.event');
-            let isDragging = false;
-            let startX = 0;
-            let startValue = 0;
 
             const updateTimeline = (year) => {
                 events.forEach(event => {
@@ -129,50 +138,7 @@
                 });
             };
 
-            // Update timeline based on slider value
             slider.addEventListener('input', () => updateTimeline(slider.value));
-
-            // Enable dragging functionality
-            slider.addEventListener('mousedown', (event) => {
-                isDragging = true;
-                startX = event.clientX;
-                startValue = parseInt(slider.value, 10);
-                event.preventDefault();
-            });
-
-            document.addEventListener('mousemove', (event) => {
-                if (isDragging) {
-                    const delta = Math.round((event.clientX - startX) / 105); // Adjust sensitivity for even slower movement
-                    let newValue = startValue + delta;
-
-                    newValue = Math.max(parseInt(slider.min), Math.min(newValue, parseInt(slider.max))); // Clamp value
-                    slider.value = newValue;
-                    updateTimeline(slider.value);
-                }
-            });
-
-            document.addEventListener('mouseup', () => {
-                isDragging = false;
-            });
-
-            // Enable arrow key navigation
-            document.addEventListener('keydown', (event) => {
-                let currentYear = parseInt(slider.value);
-
-                if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
-                    if (currentYear > parseInt(slider.min)) {
-                        slider.value = currentYear - 1;
-                        updateTimeline(slider.value);
-                    }
-                } else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
-                    if (currentYear < parseInt(slider.max)) {
-                        slider.value = currentYear + 1;
-                        updateTimeline(slider.value);
-                    }
-                }
-            });
-
-            // Initialize timeline
             updateTimeline(slider.value);
         });
     </script>
