@@ -29,6 +29,49 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
         }
 
+        /* Map container styling */
+        .map-container {
+            display: flex;
+            justify-content: center; /* Center map */
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 30px;
+        }
+
+        /* Map styling */
+        #map2 {
+            height: 500px;
+            width: 75%; 
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Information Box (Map Key) - Fixed to the right side with narrower width */
+        .info-box {
+            position: fixed;
+            top: 100px; /* Adjust top distance from the top of the screen */
+            right: 20px; /* Fixed 20px from the right */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #4b7ca1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 200px; /* Narrower width */
+            font-family: 'Georgia', serif;
+            z-index: 1000; /* Ensure it's above the map */
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            font-size: 22px;
+            color: #1d2d50;
+        }
+
+        .info-box p {
+            font-size: 14px; /* Smaller font size for narrower box */
+            color: #4e6571;
+        }
+
         /* Event details box styling */
         .event-details {
             background: #cbe0f1; /* Soft icy blue background */
@@ -48,16 +91,6 @@
         .event-details p {
             font-size: 18px;
             color: #4e6571; /* Cool grayish-blue for readability */
-        }
-
-        /* Map styling */
-        #map2 {
-            height: 500px;
-            width: 100%; 
-            max-width: 800px; 
-            margin: 0 auto 20px auto; 
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
        /* Back link button styling */
@@ -82,7 +115,6 @@
             text-decoration: none;
             color: white;
         }
-        
     </style>
 </head>
 <body>
@@ -95,7 +127,17 @@
         <p>this page is not ready yet, pick another point on timeline</p>
     </div>
 
-    <div id="map2"></div>
+    <div class="map-container">
+        <!-- Map -->
+        <div id="map2"></div>
+    </div>
+
+    <!-- Information Box (Map Key) -->
+    <div class="info-box">
+        <h3>Map Key</h3>
+        <p><strong>Indoor Relief:</strong> Assistance provided to people inside institutions such as workhouses.</p>
+        <p><strong>Outdoor Relief:</strong> Assistance given to people who remained in their homes, usually in the form of money or supplies.</p>
+    </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
@@ -149,27 +191,6 @@
             <strong>Males:</strong> 221<br>
             <strong>Females:</strong> 258
         `);
-
-        // Add a circle over Hampshire (approximate center coordinates)
-        var hampshireCircle = L.circle([51.067, -1.308], {
-            color: 'red',
-            fillColor: '#f57c7c',
-            fillOpacity: 0.4,
-            radius: 20000  // radius in meters
-        }).addTo(map2);
-
-        // Add popup with detailed information for Hampshire circle
-        hampshireCircle.bindPopup(`
-            <b>Hampshire, England</b><br>
-            <strong>Indoor relief:</strong> 91<br>
-            <strong>Outdoor relief:</strong> 230<br>
-            <strong>Widowed:</strong> 88<br>
-            <strong>With relatives:</strong> 227<br>
-            <strong>No relatives:</strong> 114<br>
-            <strong>Institutionalized:</strong> 17<br>
-            <strong>Males:</strong> 221<br>
-            <strong>Females:</strong> 145
-        `);
     </script>
 
     <!-- Back to Timeline link -->
@@ -177,3 +198,4 @@
 
 </body>
 </html>
+
