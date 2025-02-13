@@ -29,8 +29,8 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
         }
 
-      /* Event details box styling */
-      .event-details {
+        /* Event details box styling */
+        .event-details {
             background: #cbe0f1; /* Soft icy blue background */
             border: 2px solid #a1c6e0; /* Soft blue border */
             border-radius: 10px;
@@ -43,7 +43,7 @@
             font-family: 'Georgia', serif;
             background-image: url('https://www.transparenttextures.com/patterns/victorian.png'); /* Victorian Damask pattern */
             background-size: 150px 150px;
-      }
+        }
 
         .event-details p {
             font-size: 18px;
@@ -108,9 +108,68 @@
             attribution: '© OpenStreetMap'
         }).addTo(map2);
 
-        // Add a marker at London with a popup
-        var marker2 = L.marker([51.5074, -0.1278]).addTo(map2);  // Marker at London
-        marker2.bindPopup('<b>Event 2 Location!</b><br>This is where Event 2 took place.').openPopup();
+        // Add a circle over Surrey (approximate center coordinates)
+        var surreyCircle = L.circle([51.2549, -0.5947], {
+            color: 'blue',
+            fillColor: '#30a2da',
+            fillOpacity: 0.4,
+            radius: 20000  // radius in meters
+        }).addTo(map2);
+
+        // Add popup with detailed information for Surrey circle
+        surreyCircle.bindPopup(`
+            <b>Surrey, England</b><br>
+            <strong>Indoor relief:</strong> 91<br>
+            <strong>Outdoor relief:</strong> 230<br>
+            <strong>Widowed:</strong> 88<br>
+            <strong>With relatives:</strong> 227<br>
+            <strong>No relatives:</strong> 114<br>
+            <strong>Institutionalized:</strong> 17<br>
+            <strong>Males:</strong> 221<br>
+            <strong>Females:</strong> 145
+        `).openPopup();
+
+        // Add a circle over Yorkshire (approximate center coordinates)
+        var yorkshireCircle = L.circle([53.959, -1.082], {
+            color: 'green',
+            fillColor: '#67c1a6',
+            fillOpacity: 0.4,
+            radius: 20000  // radius in meters
+        }).addTo(map2);
+
+        // Add popup with detailed information for Yorkshire circle
+        yorkshireCircle.bindPopup(`
+            <b>Yorkshire, England</b><br>
+            <strong>Indoor relief:</strong> 16<br>
+            <strong>Outdoor relief:</strong> 84<br>
+            <strong>Widowed:</strong> 84<br>
+            <strong>With relatives:</strong> 146<br>
+            <strong>No relatives:</strong> 77<br>
+            <strong>Institutionalized:</strong> 13<br>
+            <strong>Males:</strong> 221<br>
+            <strong>Females:</strong> 258
+        `);
+
+        // Add a circle over Hampshire (approximate center coordinates)
+        var hampshireCircle = L.circle([51.067, -1.308], {
+            color: 'red',
+            fillColor: '#f57c7c',
+            fillOpacity: 0.4,
+            radius: 20000  // radius in meters
+        }).addTo(map2);
+
+        // Add popup with detailed information for Hampshire circle
+        hampshireCircle.bindPopup(`
+            <b>Hampshire, England</b><br>
+            <strong>Indoor relief:</strong> 91<br>
+            <strong>Outdoor relief:</strong> 230<br>
+            <strong>Widowed:</strong> 88<br>
+            <strong>With relatives:</strong> 227<br>
+            <strong>No relatives:</strong> 114<br>
+            <strong>Institutionalized:</strong> 17<br>
+            <strong>Males:</strong> 221<br>
+            <strong>Females:</strong> 145
+        `);
     </script>
 
     <!-- Back to Timeline link -->
