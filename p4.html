@@ -58,6 +58,33 @@
             margin: 0 auto 20px auto; 
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            float: left;
+            width: 70%;
+        }
+
+        /* Information box styling */
+        .info-box {
+            position: fixed;
+            top: 100px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #4b7ca1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 200px;
+            font-family: 'Georgia', serif;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            font-size: 22px;
+            color: #1d2d50;
+        }
+
+        .info-box p {
+            font-size: 16px;
+            color: #4e6571;
         }
 
         /* Back link button styling */
@@ -94,7 +121,18 @@
             Data on poverty relief in 19th-century England analyzed in 1899 by Udny Yule using advanced statistical methods to study social policies. This research focused on Poor Law Unions (PLUs) from the years 1871, 1881, and 1891. Yules’ sources included government reports, census data, and a 1894 study on population density. This research aiming to examine poverty rates, indoor and outdoor relief, population density, and age distribution. This data depicts the state of poverty relief within PLUs several decades following the 1834 Poor Law Amendment Act.</p>
     </div>
 
+    <!-- Map -->
     <div id="map4"></div>
+
+    <!-- Information Box -->
+    <div class="info-box">
+        <h3>Map Key</h3>
+        <p><strong>Pauperism:</strong> Percentage of the population receiving poor relief.</p>
+        <p><strong>Out-relief Ratio:</strong> Ratio of people receiving outdoor relief (workhouses).</p>
+        <p><strong>Proportion of Old:</strong> Proportion of elderly individuals.</p>
+        <p><strong>Population:</strong> Total population of the area.</p>
+    </div>
+
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
