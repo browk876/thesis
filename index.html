@@ -43,11 +43,28 @@
         }
 
         .subtitle {
-            font-size: 15px;
+            font-size: 18px;
             font-family: 'Georgia', serif;
             color: #1d2d50;
             margin-bottom: 25px;
             margin-top: 25px;
+        }
+
+        .placeholder-box {
+            background: #c5e2ff;
+            padding: 30px;
+            width: 45%;
+            height: 25%;
+            min-height: 355px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-family: 'Georgia', serif;
+            color: #1d2d50;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+            line-height: 2;
         }
 
         .timeline {
@@ -74,10 +91,29 @@
             display: block;
         }
 
-        input[type="range"] {
+        .timeline-container {
+            position: relative;
             width: 70%;
             max-width: 800px;
             margin: 20px 0;
+        }
+
+        .timeline-scale {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            width: 100%;
+            top: -10px;
+        }
+
+        .timeline-scale div {
+            width: 2px;
+            height: 10px;
+            background-color: #1d2d50;
+        }
+
+        input[type="range"] {
+            width: 100%;
             height: 8px;
             background: #0a3c6e;
             border-radius: 8px;
@@ -100,6 +136,8 @@
 <body>
     <h1>Poor Laws</h1>
     <h2>Welfare in 19th Century Britain</h2>
+    <div class="placeholder-box">The Poor Laws, established as a British welfare system in the 16th century, underwent a significant overhaul with the Poor Law Amendment Act of 1834. 
+        This reform introduced a rigid distinction between the "deserving" and "undeserving" poor, forcing those in need into punitive workhouses. During this era of reform, those living in poverty were subjected to extreme exploitation and abuse through the system of aid, as well as the social stigmatization of their welfare status. The stigma attached to seeking aid, along with localized data collection by individual boards, embedded biases into the records of the time.</div>
     <p class="subtitle">Use mouse to drag and pick a point on the timeline to view poor law data from different years</p>
 
     <div class="timeline">
@@ -125,7 +163,15 @@
         </div>
     </div>
 
-    <input type="range" id="year-slider" min="2020" max="2023" value="2020" step="1" />
+    <div class="timeline-container">
+        <div class="timeline-scale">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <input type="range" id="year-slider" min="2020" max="2023" value="2020" step="1" />
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
