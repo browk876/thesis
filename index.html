@@ -186,6 +186,21 @@
 
             slider.addEventListener('input', () => updateTimeline(slider.value));
             updateTimeline(slider.value);
+
+            // Add arrow key functionality to control the slider
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft') {
+                    if (slider.value > slider.min) {
+                        slider.value = parseInt(slider.value) - 1;
+                        updateTimeline(slider.value);
+                    }
+                } else if (event.key === 'ArrowRight') {
+                    if (slider.value < slider.max) {
+                        slider.value = parseInt(slider.value) + 1;
+                        updateTimeline(slider.value);
+                    }
+                }
+            });
         });
     </script>
 </body>
