@@ -191,6 +191,27 @@
             <strong>Males:</strong> 221<br>
             <strong>Females:</strong> 258
         `);
+
+        // Add a circle over Hampshire (approximate center coordinates)
+        var hampshireCircle = L.circle([51.0592, -1.3085], {
+            color: 'red',
+            fillColor: '#ff4d4d',
+            fillOpacity: 0.4,
+            radius: 20000  // radius in meters
+        }).addTo(map2);
+
+        // Add popup with detailed information for Hampshire circle
+        hampshireCircle.bindPopup(`
+            <b>Hampshire, England</b><br>
+            <strong>Indoor relief:</strong> 135<br>
+            <strong>Outdoor relief:</strong> 314<br>
+            <strong>Widowed:</strong> 170<br>
+            <strong>With relatives:</strong> 411<br>
+            <strong>No relatives:</strong> 128<br>
+            <strong>Institutionalized:</strong> 5<br>
+            <strong>Males:</strong> 228<br>
+            <strong>Females:</strong> 305
+        `);
     </script>
 
     <!-- Back to Timeline link -->
@@ -198,4 +219,3 @@
 
 </body>
 </html>
-
