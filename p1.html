@@ -97,8 +97,8 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Initialize the map with London coordinates
-        var map = L.map('map').setView([51.5074, -0.1278], 6);  // London Coordinates 
+        // Initialize the map to show the whole of the UK with a slightly lower center
+        var map = L.map('map').setView([53.5, -3.0], 6);  // Lowered center to 53.5
 
         // Add OpenStreetMap tile layer to the map
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -106,9 +106,90 @@
             attribution: '© OpenStreetMap'
         }).addTo(map);
 
-        // Add a marker at London with a popup
-        var marker = L.marker([51.5074, -0.1278]).addTo(map);
-        marker.bindPopup('<b>London</b><br>Important center during the Poor Laws era.').openPopup();
+        // Coordinates for the first circle (Molsworth and Goring)
+        var center1 = [51.4600, -0.6660];
+
+        // Add marker at the center of the first circle with detailed case information
+        L.marker(center1).addTo(map).bindPopup(
+            '<b>Case Name:</b> Molsworth v. Goring<br>' +
+            '<b>Date:</b> Easter Term 1695<br>' +
+            '<b>Parties:</b> Parties: The parishes of Molsworth and Goring.<br>' +
+            '<b>Facts:</b> A poor man had a settlement in Molsworth but worked on a boat traveling between Goring and London for a year.<br>' +
+            '<b>Argument:</b> Does the man’s experience of working on the boat grant him the right to a settlement in Goring?<br>' +
+            '<b>Judgment:</b> The court ruled no settlement was gained at Goring.'
+        );
+
+        // Add a circle around the first center (no information on the circle itself)
+        var circle1 = L.circle(center1, {
+            color: 'blue',
+            fillColor: '#30aaff',
+            fillOpacity: 0.5,
+            radius: 25000  // Adjust radius to include both points
+        }).addTo(map);
+
+        // Coordinates for the second circle (Pawlet and Burnham)
+        var center2 = [51.2315, -3.2750]; // Adjusted center for Pawlet and Burnham
+
+        // Add marker at the center of the second circle with updated detailed case information
+        L.marker(center2).addTo(map).bindPopup(
+            '<b>Case Name:</b> Pawlet v. Burnham<br>' +
+            '<b>Date:</b> 1714<br>' +
+            '<b>Parties:</b> The parishes of Pawlet and Burnham.<br>' +
+            '<b>Argument:</b> Does the man’s time spent working grant him rights to a settlement?<br>' +
+            '<b>Facts:</b> A servant worked under a contract for a year at three pounds, but left three weeks early, and the employer deducted six shillings for the unworked time.<br>' +
+            '<b>Judgment:</b> The Court ruled that both a contract and full service for the entire year are required to gain a settlement.'
+        );
+
+        // Add a circle around the second center (no information on the circle itself)
+        var circle2 = L.circle(center2, {
+            color: 'green',
+            fillColor: '#30ff00',
+            fillOpacity: 0.5,
+            radius: 25000  // Adjust radius to include both points
+        }).addTo(map);
+
+        // Coordinates for the third circle (Bagworth)
+        var center3 = [52.6300, -1.3080]; // Coordinates for Bagworth, UK
+
+        // Add marker at the center of the third circle with new case information
+        L.marker(center3).addTo(map).bindPopup(
+            '<b>Case Name:</b> R. v. Bagworth (The King against the inhabitants of Bagworth)<br>' +
+            '<b>Date:</b> 1 May 1782<br>' +
+            '<b>Parties:</b> The King and the parish of Bagworth.<br>' +
+            '<b>Facts:</b> Sarah Ward was hired on a week-to-week basis by William Hunt in Ratby before being hired for a full year. She left the service early, three weeks before the year ended, due to being pregnant.<br>' +
+            '<b>Argument:</b> It was argued that for a servant to gain a settlement, they must have completed a full year of service under one contract.<br>' +
+            '<b>Judgment:</b> The Court ruled that Sarah\'s week-to-week services could count as part of the year’s service if the work was of the same nature, and the servant lived in the master’s house as a domestic worker.'
+        );
+
+        // Add a circle around the third center (no information on the circle itself)
+        var circle3 = L.circle(center3, {
+            color: 'red',
+            fillColor: '#ff0000',
+            fillOpacity: 0.5,
+            radius: 25000  // Adjust radius to include the point
+        }).addTo(map);
+
+        // Coordinates for the fourth circle (Allendale, UK)
+        var center4 = [54.9286, -2.3054]; // Coordinates for Allendale, UK
+
+        // Add marker at the center of the fourth circle with new case information
+        L.marker(center4).addTo(map).bindPopup( 
+            '<b>Case Name:</b> R. v. Allendale<br>' +
+            '<b>Date:</b> 1789<br>' +
+            '<b>Parties:</b> The King and the parish of Allendale.<br>' +
+            '<b>Facts:</b> John Drisdale was hired in February 1786 to work in Allendale from May 1786 to May 1787. He was unmarried when hired. Drisdale married before starting the service but worked for the full year as a married man.<br>' +
+            '<b>Argument:</b> Erskine argued Drisdale should be considered married under the statute 3 W. & M. c. 11, which restricted settlement rights for married people hired for a year.<br>' +
+            '<b>Judgment:</b> Since Drisdale was unmarried at the time of hiring, he was entitled to settlement rights, even though he married before starting work.</b> .'
+        );
+
+        // Add a circle around the third center (no information on the circle itself)
+        var circle4 = L.circle(center4, {
+            color: 'yellow',
+            fillColor: 'yellow',
+            fillOpacity: 0.5,
+            radius: 25000  // Adjust radius to include the point
+        }).addTo(map);
+
     </script>
 
     <!-- Back to Timeline link -->
