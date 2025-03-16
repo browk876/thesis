@@ -22,7 +22,7 @@
             background-size: 50px 50px;
         }
 
-        h1, h2, p {
+        h1, h2 {
             text-align: center;
             margin: 0;
             font-weight: bold;
@@ -41,6 +41,39 @@
             font-family: 'Georgia', serif;
             color: #2a4c6b;
         }
+
+  /* Add flex container for posters */
+.posters-container {
+    display: flex;
+    gap: 5px;  /* Adjust the gap to control spacing */
+    width: 100%;
+    justify-content: center;  /* Center posters horizontally */
+    align-items: center;  /* Center posters vertically */
+    margin-bottom: 20px;
+}
+
+.poster, .poster2, .poster3 {
+    margin: 0;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.poster {
+    width: 30%;  /* Adjusted width */
+    order: 2;  /* Ensure .poster is second */
+}
+
+.poster2 {
+    width: 15.2%;  /* Adjusted width */
+    order: 3;  /* Ensure .poster2 is last */
+}
+
+.poster3 {
+    width: 13.5%;  /* Adjusted width */
+    order: 1;  /* Ensure .poster3 is first, on the left */
+}
+
 
         .timeline {
             display: flex;
@@ -111,6 +144,13 @@
 <body>
     <h1>Poor Laws</h1>
     <h2>Welfare in 19th Century Britain</h2>
+
+    <!-- Posters container -->
+    <div class="posters-container">
+        <img src="image1.jpg" alt="Historical Poster" class="poster" />
+        <img src="poster1.jpg" alt="Historical Poster 2" class="poster2" />
+        <img src="image2.jpg" alt="Historical Poster 3" class="poster3" />
+    </div>
 
     <div class="timeline">
         <div class="event" data-year="2020">
