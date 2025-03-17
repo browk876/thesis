@@ -42,38 +42,37 @@
             color: #2a4c6b;
         }
 
-  /* Add flex container for posters */
-.posters-container {
-    display: flex;
-    gap: 5px;  /* Adjust the gap to control spacing */
-    width: 100%;
-    justify-content: center;  /* Center posters horizontally */
-    align-items: center;  /* Center posters vertically */
-    margin-bottom: 20px;
-}
+        /* Add flex container for posters */
+        .posters-container {
+            display: flex;
+            gap: 5px;  /* Adjust the gap to control spacing */
+            width: 100%;
+            justify-content: center;  /* Center posters horizontally */
+            align-items: center;  /* Center posters vertically */
+            margin-bottom: 20px;
+        }
 
-.poster, .poster2, .poster3 {
-    margin: 0;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+        .poster, .poster2, .poster3 {
+            margin: 0;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
 
-.poster {
-    width: 30%;  /* Adjusted width */
-    order: 2;  /* Ensure .poster is second */
-}
+        .poster {
+            width: 30%;  /* Adjusted width */
+            order: 2;  /* Ensure .poster is second */
+        }
 
-.poster2 {
-    width: 15.2%;  /* Adjusted width */
-    order: 3;  /* Ensure .poster2 is last */
-}
+        .poster2 {
+            width: 15.2%;  /* Adjusted width */
+            order: 3;  /* Ensure .poster2 is last */
+        }
 
-.poster3 {
-    width: 13.5%;  /* Adjusted width */
-    order: 1;  /* Ensure .poster3 is first, on the left */
-}
-
+        .poster3 {
+            width: 13.5%;  /* Adjusted width */
+            order: 1;  /* Ensure .poster3 is first, on the left */
+        }
 
         .timeline {
             display: flex;
@@ -114,6 +113,7 @@
             top: -10px;
         }
 
+        /* Adjust scale to fit exactly 2020, 2021, and 2023 */
         .timeline-scale div {
             width: 2px;
             height: 10px;
@@ -153,7 +153,7 @@
     </div>
 
     <div class="timeline">
-        <div class="event" data-year="2020">
+        <div class="event" data-year="2019">
             <h3>Pre Amendment English Poor Law Cases</h3>
             <p>Date: 1690 - 1815</p>
             <a href="p1.html" class="navigate-button">View Details</a>
@@ -162,11 +162,6 @@
             <h3>Elderly Poor in Late-Victorian England</h3>
             <p>Date: 1851 - 1891</p>
             <a href="p2.html" class="navigate-button">View Details</a>
-        </div>
-        <div class="event" data-year="2022">
-            <h3>Economic Distress and Labour Markets Data</h3>
-            <p>Date: 1859 - 1939</p>
-            <a href="p3.html" class="navigate-button">View Details</a>
         </div>
         <div class="event" data-year="2023">
             <h3>Census and Poor Law Union Data</h3>
@@ -177,12 +172,12 @@
 
     <div class="timeline-container">
         <div class="timeline-scale">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <!-- Adjusted notches to correspond with years 2020, 2021, and 2023 -->
+            <div style="left: 0%"></div> <!-- 2020 -->
+            <div style="left: 50%"></div> <!-- 2021 -->
+            <div style="right: 0%"></div> <!-- 2023 -->
         </div>
-        <input type="range" id="year-slider" min="2020" max="2023" value="2020" step="1" />
+        <input type="range" id="year-slider" min="2019" max="2023" value="2019" step="1" />
     </div>
 
     <script>
@@ -190,26 +185,51 @@
             const slider = document.getElementById('year-slider');
             const events = document.querySelectorAll('.event');
 
+            // Define the available years
+            const availableYears = [2019, 2021, 2023];
+
+            // Update the timeline based on the year
             const updateTimeline = (year) => {
                 events.forEach(event => {
                     event.classList.toggle('active', event.dataset.year === year.toString());
                 });
             };
 
-            slider.addEventListener('input', () => updateTimeline(slider.value));
+            // Adjust slider to only allow stopping at available years
+            slider.addEventListener('input', () => {
+                const selectedYear = parseInt(slider.value);
+                if (availableYears.includes(selectedYear)) {
+                    updateTimeline(selectedYear);
+                } else {
+                    // Default to the nearest available year if outside the allowed ones
+                    slider.value = availableYears.find(year => year >= selectedYear) || availableYears[0];
+                    updateTimeline(slider.value);
+                }
+            });
+
+            // Set the step correctly to align the second stop with the second notch
+            slider.setAttribute('step', 1); // This ensures the step is 1 year
+
+            // Initialize the timeline with the current slider value
             updateTimeline(slider.value);
 
-            // Add arrow key functionality to control the slider
+            // Handle keyboard arrows to move the slider
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'ArrowLeft') {
-                    if (slider.value > slider.min) {
-                        slider.value = parseInt(slider.value) - 1;
-                        updateTimeline(slider.value);
+                    // Move left (to previous year)
+                    let currentYear = parseInt(slider.value);
+                    if (currentYear > 2019) {
+                        currentYear = availableYears[availableYears.indexOf(currentYear) - 1];
+                        slider.value = currentYear;
+                        updateTimeline(currentYear);
                     }
                 } else if (event.key === 'ArrowRight') {
-                    if (slider.value < slider.max) {
-                        slider.value = parseInt(slider.value) + 1;
-                        updateTimeline(slider.value);
+                    // Move right (to next year)
+                    let currentYear = parseInt(slider.value);
+                    if (currentYear < 2023) {
+                        currentYear = availableYears[availableYears.indexOf(currentYear) + 1];
+                        slider.value = currentYear;
+                        updateTimeline(currentYear);
                     }
                 }
             });
