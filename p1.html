@@ -85,6 +85,31 @@
             color: #4e6571;
         }
 
+        .info-box2 {
+            position: fixed;
+            top: 100px; /* Adjust top distance from the top of the screen */
+            left: 20px; /* Fixed 20px from the right */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #4b7ca1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 200px; /* Narrower width */
+            font-family: 'Georgia', serif;
+            z-index: 1000; /* Ensure it's above the map */
+        }
+
+        .info-box2 h3 {
+            margin-top: 0;
+            font-size: 22px;
+            color: #1d2d50;
+        }
+
+        .info-box2 p {
+            font-size: 14px; /* Smaller font size for narrower box */
+            color: #4e6571;
+        }
+
         /* Back link button styling */
         .back-link {
             display: block;
@@ -129,6 +154,14 @@
         <p><strong>Parish:</strong> Small administrative district with its own church.</p>
         <p><strong>Settlement:</strong> Legal concept (from 17th and 18th century) used to determine which parish or locality is responsible for the support of a poor person. When a person became a "settled" resident in a parish, it meant that the parish was responsible for providing them with relief.</p>
     </div>
+
+      <!-- Information Box 2-->
+      <div class="info-box2">
+        <h3>context</h3>
+        <p><strong>Placeholder</strong> ..........</p>
+        <p><strong>placeholder</strong> ........</p>
+    </div>
+
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>

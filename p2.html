@@ -72,6 +72,31 @@
             color: #4e6571;
         }
 
+        .info-box2 {
+            position: fixed;
+            top: 100px; /* Adjust top distance from the top of the screen */
+            left: 20px; /* Fixed 20px from the right */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #4b7ca1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 200px; /* Narrower width */
+            font-family: 'Georgia', serif;
+            z-index: 1000; /* Ensure it's above the map */
+        }
+
+        .info-box2 h3 {
+            margin-top: 0;
+            font-size: 22px;
+            color: #1d2d50;
+        }
+
+        .info-box2 p {
+            font-size: 14px; /* Smaller font size for narrower box */
+            color: #4e6571;
+        }
+
         /* Event details box styling */
         .event-details {
             background: #cbe0f1; /* Soft icy blue background */
@@ -138,6 +163,13 @@
         <h3>Map Key</h3>
         <p><strong>Indoor Relief:</strong> Assistance provided to people inside institutions such as workhouses.</p>
         <p><strong>Outdoor Relief:</strong> Assistance given to people who remained in their homes, usually in the form of money or supplies.</p>
+    </div>
+
+    <!-- Information Box2 -->
+    <div class="info-box2">
+        <h3>context</h3>
+        <p><strong>placeholder</strong> ...........</p>
+      
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
