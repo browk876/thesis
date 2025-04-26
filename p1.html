@@ -1,272 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pre Amendment English Poor Law Cases</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        /* General body styling */
-        body {
-            font-family: 'Georgia', serif;
-            background-color: #5f9de9; /* Soft, cool, light blue */
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Subtle wood texture */
-            background-size: 50px 50px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre Amendment English Poor Law Cases</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #5f9de9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+      background-size: 50px 50px;
+    }
 
-        h1 {
-            text-align: center;
-            margin-top: 20;
-            margin-bottom: 20px;
-            font-size: 45px;
-            color: #1d2d50; /* Deep midnight blue */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
-        }
+    h1 {
+      text-align: center;
+      margin-top: 20;
+      margin-bottom: 20px;
+      font-size: 45px;
+      color: #1d2d50;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-        /* Event details box styling */
-        .event-details {
-            background: #cbe0f1; /* Soft icy blue background */
-            border: 2px solid #a1c6e0; /* Soft blue border */
-            border-radius: 10px;
-            padding: 25px;
-            width: 860%;
-            max-width: 800px;
-            margin-bottom: 30px;
-            margin-top: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            font-family: 'Georgia', serif;
-            background-image: url('https://www.transparenttextures.com/patterns/victorian.png'); /* Victorian Damask pattern */
-            background-size: 150px 150px;
-        }
+    .event-details {
+      background: #cbe0f1;
+      border: 2px solid #a1c6e0;
+      border-radius: 10px;
+      padding: 25px;
+      width: 860%;
+      max-width: 800px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Georgia', serif;
+      background-image: url('https://www.transparenttextures.com/patterns/victorian.png');
+      background-size: 150px 150px;
+    }
 
-        .event-details p {
-            font-size: 18px;
-            color: #4e6571; /* Cool grayish-blue for readability */
-        }
+    .event-details p {
+      font-size: 18px;
+      color: #4e6571;
+    }
 
-        /* Map styling */
-        #map {
-            height: 500px;
-            width: 100%; 
-            max-width: 800px; 
-            margin: 0 auto 20px auto; 
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
+    #map {
+      height: 500px;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
 
-         /* Information Box (Map Key) - Fixed to the right side with narrower width */
-         .info-box {
-            position: fixed;
-            top: 100px; /* Adjust top distance from the top of the screen */
-            right: 20px; /* Fixed 20px from the right */
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid #4b7ca1;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            max-width: 200px; /* Narrower width */
-            font-family: 'Georgia', serif;
-            z-index: 1000; /* Ensure it's above the map */
-        }
+    .info-box, .info-box2 {
+      position: fixed;
+      top: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      border-radius: 8px;
+      border: 2px solid #4b7ca1;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      max-width: 220px;
+      font-family: 'Georgia', serif;
+      z-index: 1000;
+    }
 
-        .info-box h3 {
-            margin-top: 0;
-            font-size: 22px;
-            color: #1d2d50;
-        }
+    .info-box {
+      right: 20px;
+    }
 
-        .info-box p {
-            font-size: 14px; /* Smaller font size for narrower box */
-            color: #4e6571;
-        }
+    .info-box2 {
+      left: 20px;
+    }
 
-        .info-box2 {
-            position: fixed;
-            top: 100px; /* Adjust top distance from the top of the screen */
-            left: 20px; /* Fixed 20px from the right */
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid #4b7ca1;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            max-width: 200px; /* Narrower width */
-            font-family: 'Georgia', serif;
-            z-index: 1000; /* Ensure it's above the map */
-        }
+    .info-box h3, .info-box2 h3 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #1d2d50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .info-box2 h3 {
-            margin-top: 0;
-            font-size: 22px;
-            color: #1d2d50;
-        }
+    .info-box p, .info-box2 p {
+      font-size: 14px;
+      color: #4e6571;
+    }
 
-        .info-box2 p {
-            font-size: 14px; /* Smaller font size for narrower box */
-            color: #4e6571;
-        }
+    h3 button {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #1d2d50;
+      margin-left: 10px;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+    }
 
-        /* Back link button styling */
-        .back-link {
-            display: block;
-            margin-top: 20px;
-            text-align: center;
-            text-decoration: none;
-            color: #f4f5fa;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 10px 15px;
-            background-color: #2a4f6b; /* Soft navy background */
-            border-radius: 8px;
-            border: 2px solid #4b7ca1;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
+    h3 button.collapsed {
+      transform: rotate(180deg);
+    }
 
-        .back-link:hover {
-            background-color: #2a4f6b; /* Darker blue on hover */
-            border-color: #3e6c8e;
-            text-decoration: none;
-            color: white;
-        }
-    </style>
+    h3 button:hover {
+      color: #4b7ca1;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #f4f5fa;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px 15px;
+      background-color: #2a4f6b;
+      border-radius: 8px;
+      border: 2px solid #4b7ca1;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .back-link:hover {
+      background-color: #2a4f6b;
+      border-color: #3e6c8e;
+      text-decoration: none;
+      color: white;
+    }
+  </style>
 </head>
+
 <body>
 
-    <h1>Pre Amendment English Poor Law Cases</h1>
+<h1>Pre Amendment English Poor Law Cases</h1>
 
-    <div class="event-details">
-        <p><strong>Date:</strong> 1690 - 1815</p>
-       
-        <p>The Poor Laws, was established as a British welfare system in the 16th century. This system underwent a significant change with the <strong style="color: #003366;">Poor Law Amendment Act of 1834</strong>. This reform introduced a rigid distinction between the "deserving" and "undeserving" poor, forcing those in need into punitive workhouses. The stigma attached to seeking aid, along with localized data collection by individual boards, embedded biases into the records of the time. This data shows examples of cases from before the 1834 amendment.</p>
+<div class="event-details">
+  <p><strong>Date:</strong> 1690 - 1815</p>
+  <p>The Poor Laws, was established as a British welfare system in the 16th century. This system underwent a significant change with the <strong style="color: #003366;">Poor Law Amendment Act of 1834</strong>. This reform introduced a rigid distinction between the "deserving" and "undeserving" poor, forcing those in need into punitive workhouses. The stigma attached to seeking aid, along with localized data collection by individual boards, embedded biases into the records of the time. This data shows examples of cases from before the 1834 amendment.</p>
+</div>
+
+<div id="map"></div>
+
+<!-- Updated Info Box Glossary with Matching Font and Bigger Size -->
+<div class="info-box">
+    <h3>Glossary</h3>
+  
+    <div class="glossary-item">
+      <button class="glossary-button" onclick="toggleTerm('term1', this)">Whig Government ▼</button>
+      <div id="term1" style="display:none;">
+        <p>Political leaders who identified with the Whig Party - associated with constitutional monarchy and protecting the interests of the emerging middle class.</p>
+      </div>
     </div>
-    
-    
-
-    <div id="map"></div>
-
-    <!-- Information Box (Map Key) -->
-    <div class="info-box">
-        <h3>Glossary</h3>
-        <p><strong>Whig Government:</strong> Political leaders who identified with the Whig Party - associated with constitutional monarchy and protecting the interests of the emerging middle class. </p>
-        <p><strong>Parish:</strong> Small administrative district with its own church.</p>
-        <p><strong>Settlement:</strong> Legal concept (from 17th and 18th century) used to determine which parish or locality is responsible for the support of a poor person. When a person became a "settled" resident in a parish, it meant that the parish was responsible for providing them with relief.</p>
+  
+    <div class="glossary-item">
+      <button class="glossary-button" onclick="toggleTerm('term2', this)">Parish ▼</button>
+      <div id="term2" style="display:none;">
+        <p>Small administrative district with its own church.</p>
+      </div>
     </div>
-
-      <!-- Information Box 2-->
-      <div class="info-box2">
-        <h3>Further Context</h3>
-        <p>The <strong>Whig government</strong> enforced the new Poor Law as a means to adapt to socio-economic shifts caused by the <strong>Industrial Revolution</strong>, while still preserving their own class interests.</p>
-        <p> The <strong>1834 Amendment Act</strong> replaced local parish-based assistance with larger poor law unions managed by boards of guardians, overseen by a central authority in London. </p>
-        <p> Present day American welfare operates similarly in the sense that programs such as SNAP and Medicaid are <strong>federally funded but state administered</strong>. There is increasing federal input regarding how the aid is distributed.</p>
-        <p> Under the 19th century Poor Law, workhouses became the <strong>primary source of aid</strong>. Life in the workhouses was <strong>intentionally cruel</strong> and undesirable, these conditions were meant to discourage people from seeking government aid.</p>
-        <p> Many present day American welfare programs, such as TANF (Temporary Assistance for Needy Families) have work requirements in place to deter the assistance of long term aid. </p>
-
+  
+    <div class="glossary-item">
+      <button class="glossary-button" onclick="toggleTerm('term3', this)">Settlement ▼</button>
+      <div id="term3" style="display:none;">
+        <p>Legal concept (from 17th and 18th century) used to determine which parish or locality is responsible for the support of a poor person. When a person became a "settled" resident in a parish, it meant that the parish was responsible for providing them with relief.</p>
+      </div>
     </div>
+  </div>
+  
+  <script>
+  function toggleTerm(id, button) {
+    var content = document.getElementById(id);
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.innerHTML = button.innerHTML.replace("▼", "▲");
+    } else {
+      content.style.display = "none";
+      button.innerHTML = button.innerHTML.replace("▲", "▼");
+    }
+  }
+  </script>
+  
+  <style>
+  .glossary-button, .context-button {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 1.2em; /* bigger font size */
+    cursor: pointer;
+    padding: 5px 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .glossary-button:hover, .context-button:hover {
+    text-decoration: underline;
+  }
+  
+  /* Optional: add spacing between glossary items */
+  .glossary-item, .context-item {
+    margin-bottom: 10px;
+  }
+  </style>
+  
+  
+<!-- Updated Info Box Further Context with Matching Font and Bigger Size -->
+<div class="info-box2">
+    <h3>Further Context</h3>
+  
+    <div class="context-item">
+      <button class="context-button" onclick="toggleTerm('context1', this)">The New Poor Law ▼</button>
+      <div id="context1" style="display:none;">
+        <p>The Whig government enforced the new Poor Law as a means to adapt to socio-economic shifts caused by the Industrial Revolution, while still preserving their own class interests.</p>
+      </div>
+    </div>
+  
+    <div class="context-item">
+      <button class="context-button" onclick="toggleTerm('context2', this)">1834 Amendment Act ▼</button>
+      <div id="context2" style="display:none;">
+        <p>The 1834 Amendment Act replaced local parish-based assistance with larger poor law unions managed by boards of guardians, overseen by a central authority in London.</p>
+        <p>Present day American welfare operates similarly in the sense that programs such as SNAP and Medicaid are federally funded but state administered. There is increasing federal input regarding how the aid is distributed. </p>
+      </div>
+    </div>
+  
+    <div class="context-item">
+      <button class="context-button" onclick="toggleTerm('context3', this)">Workhouses ▼</button>
+      <div id="context3" style="display:none;">
+        <p>Under the 19th century Poor Law, workhouses became the primary source of aid. Life in the workhouses was intentionally cruel and undesirable, these conditions were meant to discourage people from seeking government aid.</p>
 
+           <p> Many present day American welfare programs, such as TANF (Temporary Assistance for Needy Families) have work requirements in place to deter the assistance of long term aid.</p>
+      </div>
+    </div>
+  
+   
+  </div>
+  
+  <script>
+  function toggleTerm(id, button) {
+    var content = document.getElementById(id);
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.innerHTML = button.innerHTML.replace("▼", "▲");
+    } else {
+      content.style.display = "none";
+      button.innerHTML = button.innerHTML.replace("▲", "▼");
+    }
+  }
+  </script>
+  
+  <style>
+  .context-button {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 1.2em; /* bigger font size */
+    cursor: pointer;
+    padding: 5px 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .context-button:hover {
+    text-decoration: underline;
+  }
+  
+  /* Optional: you can add spacing between items */
+  .context-item {
+    margin-bottom: 10px;
+  }
+  </style>
+  
+  
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        // Initialize the map to show the whole of the UK with a slightly lower center
-        var map = L.map('map').setView([53.5, -3.0], 6);  // Lowered center to 53.5
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  function toggleBox(id, button) {
+    var content = document.getElementById(id);
+    if (content.style.display === "none") {
+      content.style.display = "block";
+      button.classList.remove('collapsed');
+    } else {
+      content.style.display = "none";
+      button.classList.add('collapsed');
+    }
+  }
 
-        // Add OpenStreetMap tile layer to the map
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+  var map = L.map('map').setView([53.5, -3.0], 6);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
 
-        // Coordinates for the first circle (Molsworth and Goring)
-        var center1 = [51.4600, -0.6660];
+  var center1 = [51.4600, -0.6660];
+  L.marker(center1).addTo(map).bindPopup(
+    '<b>Case Name:</b> Molsworth v. Goring<br>' +
+    '<b>Date:</b> Easter Term 1695<br>' +
+    '<b>Parties:</b> Parishes of Molsworth and Goring.<br>' +
+    '<b>Facts:</b> Poor man with settlement in Molsworth worked on a boat between Goring and London.<br>' +
+    '<b>Judgment:</b> No settlement gained at Goring.'
+  );
+  L.circle(center1, {
+    color: 'blue',
+    fillColor: '#30aaff',
+    fillOpacity: 0.5,
+    radius: 25000
+  }).addTo(map);
 
-        // Add marker at the center of the first circle with detailed case information
-        L.marker(center1).addTo(map).bindPopup(
-            '<b>Case Name:</b> Molsworth v. Goring<br>' +
-            '<b>Date:</b> Easter Term 1695<br>' +
-            '<b>Parties:</b> Parties: The parishes of Molsworth and Goring.<br>' +
-            '<b>Facts:</b> A poor man had a settlement in Molsworth but worked on a boat traveling between Goring and London for a year.<br>' +
-            '<b>Argument:</b> Does the man’s experience of working on the boat grant him the right to a settlement in Goring?<br>' +
-            '<b>Judgment:</b> The court ruled no settlement was gained at Goring.'
-        );
+  var center2 = [51.2315, -3.2750];
+  L.marker(center2).addTo(map).bindPopup(
+    '<b>Case Name:</b> Pawlet v. Burnham<br>' +
+    '<b>Date:</b> 1714<br>' +
+    '<b>Facts:</b> Servant left early under yearly contract.<br>' +
+    '<b>Judgment:</b> Full year contract and service required for settlement.'
+  );
+  L.circle(center2, {
+    color: 'green',
+    fillColor: '#30ff00',
+    fillOpacity: 0.5,
+    radius: 25000
+  }).addTo(map);
 
-        // Add a circle around the first center (no information on the circle itself)
-        var circle1 = L.circle(center1, {
-            color: 'blue',
-            fillColor: '#30aaff',
-            fillOpacity: 0.5,
-            radius: 25000  // Adjust radius to include both points
-        }).addTo(map);
+  var center3 = [52.6300, -1.3080];
+  L.marker(center3).addTo(map).bindPopup(
+    '<b>Case Name:</b> R. v. Bagworth<br>' +
+    '<b>Date:</b> 1782<br>' +
+    '<b>Facts:</b> Sarah Ward worked week-to-week before full-year contract.<br>' +
+    '<b>Judgment:</b> Week-to-week could count if same nature.'
+  );
+  L.circle(center3, {
+    color: 'red',
+    fillColor: '#ff0000',
+    fillOpacity: 0.5,
+    radius: 25000
+  }).addTo(map);
 
-        // Coordinates for the second circle (Pawlet and Burnham)
-        var center2 = [51.2315, -3.2750]; // Adjusted center for Pawlet and Burnham
+  var center4 = [54.9286, -2.3054];
+  L.marker(center4).addTo(map).bindPopup(
+    '<b>Case Name:</b> R. v. Allendale<br>' +
+    '<b>Date:</b> 1789<br>' +
+    '<b>Facts:</b> John Drisdale married after hiring but before service began.<br>' +
+    '<b>Judgment:</b> Settlement granted as unmarried at hiring time.'
+  );
+  L.circle(center4, {
+    color: 'yellow',
+    fillColor: 'yellow',
+    fillOpacity: 0.5,
+    radius: 25000
+  }).addTo(map);
+</script>
 
-        // Add marker at the center of the second circle with updated detailed case information
-        L.marker(center2).addTo(map).bindPopup(
-            '<b>Case Name:</b> Pawlet v. Burnham<br>' +
-            '<b>Date:</b> 1714<br>' +
-            '<b>Parties:</b> The parishes of Pawlet and Burnham.<br>' +
-            '<b>Argument:</b> Does the man’s time spent working grant him rights to a settlement?<br>' +
-            '<b>Facts:</b> A servant worked under a contract for a year at three pounds, but left three weeks early, and the employer deducted six shillings for the unworked time.<br>' +
-            '<b>Judgment:</b> The Court ruled that both a contract and full service for the entire year are required to gain a settlement.'
-        );
-
-        // Add a circle around the second center (no information on the circle itself)
-        var circle2 = L.circle(center2, {
-            color: 'green',
-            fillColor: '#30ff00',
-            fillOpacity: 0.5,
-            radius: 25000  // Adjust radius to include both points
-        }).addTo(map);
-
-        // Coordinates for the third circle (Bagworth)
-        var center3 = [52.6300, -1.3080]; // Coordinates for Bagworth, UK
-
-        // Add marker at the center of the third circle with new case information
-        L.marker(center3).addTo(map).bindPopup(
-            '<b>Case Name:</b> R. v. Bagworth (The King against the inhabitants of Bagworth)<br>' +
-            '<b>Date:</b> 1 May 1782<br>' +
-            '<b>Parties:</b> The King and the parish of Bagworth.<br>' +
-            '<b>Facts:</b> Sarah Ward was hired on a week-to-week basis by William Hunt in Ratby before being hired for a full year. She left the service early, three weeks before the year ended, due to being pregnant.<br>' +
-            '<b>Argument:</b> It was argued that for a servant to gain a settlement, they must have completed a full year of service under one contract.<br>' +
-            '<b>Judgment:</b> The Court ruled that Sarah\'s week-to-week services could count as part of the year’s service if the work was of the same nature, and the servant lived in the master’s house as a domestic worker.'
-        );
-
-        // Add a circle around the third center (no information on the circle itself)
-        var circle3 = L.circle(center3, {
-            color: 'red',
-            fillColor: '#ff0000',
-            fillOpacity: 0.5,
-            radius: 25000  // Adjust radius to include the point
-        }).addTo(map);
-
-        // Coordinates for the fourth circle (Allendale, UK)
-        var center4 = [54.9286, -2.3054]; // Coordinates for Allendale, UK
-
-        // Add marker at the center of the fourth circle with new case information
-        L.marker(center4).addTo(map).bindPopup( 
-            '<b>Case Name:</b> R. v. Allendale<br>' +
-            '<b>Date:</b> 1789<br>' +
-            '<b>Parties:</b> The King and the parish of Allendale.<br>' +
-            '<b>Facts:</b> John Drisdale was hired in February 1786 to work in Allendale from May 1786 to May 1787. He was unmarried when hired. Drisdale married before starting the service but worked for the full year as a married man.<br>' +
-            '<b>Argument:</b> Erskine argued Drisdale should be considered married under the statute 3 W. & M. c. 11, which restricted settlement rights for married people hired for a year.<br>' +
-            '<b>Judgment:</b> Since Drisdale was unmarried at the time of hiring, he was entitled to settlement rights, even though he married before starting work.</b> .'
-        );
-
-        // Add a circle around the third center (no information on the circle itself)
-        var circle4 = L.circle(center4, {
-            color: 'yellow',
-            fillColor: 'yellow',
-            fillOpacity: 0.5,
-            radius: 25000  // Adjust radius to include the point
-        }).addTo(map);
-
-    </script>
-
-    <!-- Back to Timeline link -->
-    <a class="back-link" href="index.html">Back to Timeline</a>
+<a class="back-link" href="index.html">Back to Timeline</a>
 
 </body>
 </html>
