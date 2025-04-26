@@ -273,8 +273,35 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Initialize the map with London coordinates
-        var map4 = L.map('map4').setView([51.5074, -0.1278], 11);  // Centered in London
+       // Initialize the map with London coordinates
+var map4 = L.map('map4', {
+    center: [51.5074, -0.1278],  // Centered in London
+    zoom: 11,  // Initial zoom level
+    scrollWheelZoom: false,  // Disable zooming with the scroll wheel
+    zoomControl: false  // Disable zoom control buttons
+});
+
+// Add OpenStreetMap tile layer to the map
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map4);
+
+// Add markers for each location with info for West Ham only
+var locations = [
+    // Your location data...
+];
+
+// Add markers with popups for each location
+locations.forEach(function(location) {
+    var marker = L.marker(location.coords).addTo(map4);
+    if (location.info) {
+        marker.bindPopup(`<b>${location.name}</b><br>${location.info}`);
+    } else {
+        marker.bindPopup(`<b>${location.name}</b>`);
+    }
+});
+
 
         // Add OpenStreetMap tile layer to the map
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
