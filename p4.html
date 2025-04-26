@@ -63,7 +63,7 @@
         }
 
         /* Information box styling */
-        .info-box {
+        .info-box, .info-box2 {
             position: fixed;
             top: 100px;
             right: 10px;
@@ -72,44 +72,49 @@
             border-radius: 8px;
             border: 2px solid #4b7ca1;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            max-width: 200px;
+            max-width: 230px;
             font-family: 'Georgia', serif;
+            z-index: 1000;
         }
 
-        .info-box h3 {
+        .info-box {
+      right: 20px;
+    }
+
+    .info-box2 {
+      left: 20px;
+    }
+
+        .info-box h3, .info-box2 h3 {
             margin-top: 0;
             font-size: 22px;
             color: #1d2d50;
         }
 
-        .info-box p {
+        .info-box p, .info-box2 p {
             font-size: 16px;
             color: #4e6571;
         }
 
-        .info-box2 {
-            position: fixed;
-            top: 100px;
-            left: 10px;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid #4b7ca1;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            max-width: 200px;
-            font-family: 'Georgia', serif;
-        }
+        h3 button {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #1d2d50;
+      margin-left: 10px;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+    }
 
-        .info-box2 h3 {
-            margin-top: 0;
-            font-size: 22px;
-            color: #1d2d50;
-        }
+    h3 button.collapsed {
+      transform: rotate(180deg);
+    }
 
-        .info-box2 p {
-            font-size: 16px;
-            color: #4e6571;
-        }
+    h3 button:hover {
+      color: #4b7ca1;
+    }
+
 
         /* Back link button styling */
         .back-link {
@@ -151,20 +156,120 @@
     <!-- Information Box -->
     <div class="info-box">
         <h3>Glossary</h3>
-        <p><strong>Pauperism:</strong> Percentage of the population receiving poor relief.</p>
-        <p><strong>Out-relief Ratio:</strong> Ratio of people receiving outdoor relief ( Assistance given to people who remained in their homes, usually in the form of money or supplies ).</p>
-        <p><strong>Proportion of Old:</strong> Proportion of elderly individuals.</p>
-        <p><strong>Population:</strong> Total population of the area.</p>
+
+        <div class="glossary-item">
+            <button class="glossary-button" onclick="toggleTerm('term1', this)">Pauperism ▼</button>
+            <div id="term1" style="display:none;">
+        <p>Percentage of the population receiving poor relief.</p>
     </div>
+</div>
+
+<div class="glossary-item">
+    <button class="glossary-button" onclick="toggleTerm('term2', this)">Out-relief Ratio ▼</button>
+    <div id="term2" style="display:none;">
+        <p> Ratio of people receiving outdoor relief ( Assistance given to people who remained in their homes, usually in the form of money or supplies ).</p>
+    </div>
+</div>
+
+<div class="glossary-item">
+    <button class="glossary-button" onclick="toggleTerm('term3', this)">Proportion of Old ▼</button>
+    <div id="term3" style="display:none;">
+        <p>Proportion of elderly individuals.</p>
+    </div>
+</div>
+
+<div class="glossary-item">
+    <button class="glossary-button" onclick="toggleTerm('term4', this)">Population ▼</button>
+    <div id="term4" style="display:none;">
+        <p>Total population of the area.</p>
+    </div>
+</div>
+    </div>
+
+    <script>
+        function toggleTerm(id, button) {
+          var content = document.getElementById(id);
+          if (content.style.display === "none") {
+            content.style.display = "block";
+            button.innerHTML = button.innerHTML.replace("▼", "▲");
+          } else {
+            content.style.display = "none";
+            button.innerHTML = button.innerHTML.replace("▲", "▼");
+          }
+        }
+        </script>
+        
+        <style>
+        .glossary-button, .context-button {
+          background: none;
+          border: none;
+          font-family: inherit;
+          font-size: 1.2em; /* bigger font size */
+          cursor: pointer;
+          padding: 5px 0;
+          display: block;
+          width: 100%;
+          text-align: left;
+        }
+        
+        .glossary-button:hover, .context-button:hover {
+          text-decoration: underline;
+        }
+        
+        /* Optional: add spacing between glossary items */
+        .glossary-item, .context-item {
+          margin-bottom: 10px;
+        }
+        </style>
+        
 
      <!-- Information Box2 -->
      <div class="info-box2">
         <h3>Further Context</h3>
-        <p><strong>Placeholder</strong> .........</p>
-   
-        
+
+        <div class="context-item">
+            <button class="context-button" onclick="toggleTerm('context1', this)">placeholder ▼</button>
+            <div id="context1" style="display:none;">
+        <p> .........</p>
+    </div>
+</div>     
     </div>
 
+    <script>
+        function toggleTerm(id, button) {
+          var content = document.getElementById(id);
+          if (content.style.display === "none") {
+            content.style.display = "block";
+            button.innerHTML = button.innerHTML.replace("▼", "▲");
+          } else {
+            content.style.display = "none";
+            button.innerHTML = button.innerHTML.replace("▲", "▼");
+          }
+        }
+        </script>
+        
+        <style>
+        .context-button {
+          background: none;
+          border: none;
+          font-family: inherit;
+          font-size: 1.2em; /* bigger font size */
+          cursor: pointer;
+          padding: 5px 0;
+          display: block;
+          width: 100%;
+          text-align: left;
+        }
+        
+        .context-button:hover {
+          text-decoration: underline;
+        }
+        
+        /* Optional: you can add spacing between items */
+        .context-item {
+          margin-bottom: 10px;
+        }
+        </style>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
