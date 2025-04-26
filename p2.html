@@ -244,8 +244,14 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Initialize the map with London coordinates
-        var map2 = L.map('map2').setView([51.5074, -0.1278], 6);  // London Coordinates
+       var map2 = L.map('map2', {
+    center: [51.5074, -0.1278], // London Coordinates
+    zoom: 6,
+    zoomControl: false,         // Disable zoom controls
+    scrollWheelZoom: false,     // Disable zoom with mouse scroll
+    touchZoom: false            // Disable zoom on touch devices
+});
+
 
         // Add OpenStreetMap tile layer to the map
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
